@@ -22,9 +22,9 @@ import com.hazelcast.cluster.Address;
 import com.hazelcast.core.HazelcastInstance;
 import com.hazelcast.instance.impl.HazelcastInstanceImpl;
 import com.hazelcast.jet.config.JetConfig;
+import com.hazelcast.jet.core.JetTestSupport;
 import com.hazelcast.jet.impl.JetClientInstanceImpl;
 import com.hazelcast.jet.impl.JetService;
-import com.hazelcast.test.HazelcastTestSupport;
 import com.hazelcast.test.mocknetwork.TestNodeRegistry;
 
 import java.util.Arrays;
@@ -116,7 +116,7 @@ public class JetTestInstanceFactory {
 
     public JetInstance[] getAllJetInstances() {
         return factory.getAllHazelcastInstances().stream()
-                      .map(HazelcastTestSupport::getNodeEngineImpl)
+                      .map(JetTestSupport::getNodeEngineImpl)
                       .map(node -> node.<JetService>getService(JetService.SERVICE_NAME))
                       .map(JetService::getJetInstance)
                       .toArray(JetInstance[]::new);

@@ -35,6 +35,7 @@ import com.hazelcast.logging.ILogger;
 import com.hazelcast.logging.Logger;
 import com.hazelcast.map.IMap;
 import com.hazelcast.spi.impl.NodeEngineImpl;
+import com.hazelcast.test.Accessors;
 import com.hazelcast.test.HazelcastTestSupport;
 import org.junit.After;
 import org.junit.ClassRule;
@@ -210,12 +211,24 @@ public abstract class JetTestSupport extends HazelcastTestSupport {
         return getAddress(hz(instance));
     }
 
+    public static Address getAddress(HazelcastInstance instance) {
+        return Accessors.getAddress(instance);
+    }
+
     public static Node getNode(JetInstance instance) {
         return getNode(hz(instance));
     }
 
+    public static Node getNode(HazelcastInstance instance) {
+        return Accessors.getNode(instance);
+    }
+
     public static NodeEngineImpl getNodeEngineImpl(JetInstance instance) {
         return getNodeEngineImpl(hz(instance));
+    }
+
+    public static NodeEngineImpl getNodeEngineImpl(HazelcastInstance instance) {
+        return Accessors.getNodeEngineImpl(instance);
     }
 
     public Address nextAddress() {

@@ -23,7 +23,7 @@ import com.hazelcast.instance.impl.HazelcastInstanceImpl;
 import com.hazelcast.instance.impl.HazelcastInstanceProxy;
 import com.hazelcast.instance.impl.Node;
 import com.hazelcast.instance.impl.NodeState;
-import com.hazelcast.internal.nio.tcp.FirewallingNetworkingService.FirewallingEndpointManager;
+import com.hazelcast.internal.server.FirewallingServer.FirewallingEndpointManager;
 import com.hazelcast.jet.JetInstance;
 import com.hazelcast.jet.config.JetConfig;
 import com.hazelcast.logging.ILogger;
@@ -201,7 +201,7 @@ public abstract class JetSplitBrainTestSupport extends JetTestSupport {
     }
 
     private static FirewallingEndpointManager getFireWalledEndpointManager(HazelcastInstance hz) {
-        return (FirewallingEndpointManager) getNode(hz).getEndpointManager();
+        return (FirewallingEndpointManager) getNode(hz).getConnectionManager();
     }
 
     private Brains getBrains(JetInstance[] instances, int firstSubClusterSize, int secondSubClusterSize) {
