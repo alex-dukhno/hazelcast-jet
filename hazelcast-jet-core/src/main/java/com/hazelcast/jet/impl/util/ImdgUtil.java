@@ -44,6 +44,7 @@ import java.util.List;
 import java.util.function.Function;
 import java.util.function.Predicate;
 
+import static com.hazelcast.instance.EndpointQualifier.MEMBER;
 import static java.util.stream.Collectors.toList;
 
 public final class ImdgUtil {
@@ -120,7 +121,7 @@ public final class ImdgUtil {
     }
 
     public static Connection getMemberConnection(@Nonnull NodeEngine engine, @Nonnull Address memberAddr) {
-        return ((NodeEngineImpl) engine).getNode().getConnectionManager().get(memberAddr);
+        return ((NodeEngineImpl) engine).getNode().getServer().getConnectionManager(MEMBER).get(memberAddr);
     }
 
     @Nonnull
